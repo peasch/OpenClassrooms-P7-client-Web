@@ -1,4 +1,4 @@
-package com.peasch.webbooks.web.Beans;
+package com.peasch.webbooks.Beans;
 
 
 import java.util.HashSet;
@@ -13,13 +13,12 @@ public class UserBean {
     private String name;
     private String firstName;
     private String birthDate;
-    private LibraryBean library;
-     private Set<BorrowingBean> borrowings = new HashSet<>();
+    private Set<BorrowingBean> borrowings = new HashSet<>();
 
     public UserBean() {
     }
 
-    public UserBean(int id, String userName, String password, String email, String name, String firstName, String birthDate, LibraryBean library, Set<BorrowingBean> borrowings) {
+    public UserBean(int id, String userName, String password, String email, String name, String firstName, String birthDate, Set<BorrowingBean> borrowings) {
         this.id = id;
         this.userName = userName;
         this.password = password;
@@ -27,17 +26,10 @@ public class UserBean {
         this.name = name;
         this.firstName = firstName;
         this.birthDate = birthDate;
-        this.library = library;
         this.borrowings = borrowings;
     }
 
-    public LibraryBean getLibrary() {
-        return library;
-    }
 
-    public void setLibrary(LibraryBean library) {
-        this.library = library;
-    }
 
     public Set<BorrowingBean> getBorrowings() {
         return borrowings;

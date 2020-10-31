@@ -1,4 +1,4 @@
-package com.peasch.webbooks.web.Beans;
+package com.peasch.webbooks.Beans;
 
 import java.util.HashSet;
 import java.util.Set;

@@ -1,4 +1,4 @@
-package com.peasch.webbooks.web.Beans;
+package com.peasch.webbooks.Beans;
 
 public class BorrowingBean {
     private static final long serialVersionUID = 1L;
