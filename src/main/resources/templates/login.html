@@ -20,12 +20,12 @@
     <div class="container">
         <div class="row">
             <div class="col-8 offset-2">
-                <form th:action="@{/register}" th:object="${userBean}" method="post">
+                <form th:action="@{/login}" th:object="${userBean}" method="post">
 
                     <div class="form-group row">
                         <label th:for="userName" class="col-sm-2 col-form-label">Pseudo</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" id="userName" th:field="*{userName}"
+                            <input type="text" class="form-control" id="userName" th:field="*{username}"
                                    placeholder="Pseudo..."/>
                         </div>
                     </div>
@@ -38,8 +38,8 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-12">
-                            <div class="float-right">
-                                <button type="submit" class="btn btn-outline-light">S'inscrire</button>
+                            <div >
+                                <button type="submit" class="btn btn-outline-dark">Connexion</button>
                             </div>
                         </div>
                     </div>

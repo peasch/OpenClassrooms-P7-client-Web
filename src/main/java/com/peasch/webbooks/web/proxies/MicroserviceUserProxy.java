@@ -2,15 +2,15 @@ package com.peasch.webbooks.web.proxies;
 
 import com.peasch.webbooks.Beans.*;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @FeignClient(name="MICROSERVICE-LIBRARY-MODEL", url = "localhost:8181")
 public interface MicroserviceUserProxy {
+
 
     @GetMapping(value="/users")
     List<UserBean> getUsers();
@@ -18,8 +18,11 @@ public interface MicroserviceUserProxy {
     @GetMapping(value="/user/{id}")
     UserBean getUserById(@PathVariable(value = "id") Integer id);
 
-    @PostMapping("/user/add")
+    @PostMapping("/api/auth/register")
     void addUser(@RequestBody UserBean userBean);
+
+    @PostMapping("/api/auth/login")
+    String login(@RequestBody UserBean user);
 
     @GetMapping("/libraries")
     List<LibraryBean> getLibraries();
@@ -42,4 +45,13 @@ public interface MicroserviceUserProxy {
 
     @PostMapping("/books/search")
     List<BookBean> findBooksByAuthor(@RequestBody Research research);
+
+    @GetMapping("/books/{id}")
+    BookBean getBookById(@PathVariable(value = "id")Integer id);
+
+    @GetMapping("/copies/book/{id}")
+    Map<Integer,Integer> getCopiesofBookInLibraries(@PathVariable(value="id")Integer id);
+
+
+
 }

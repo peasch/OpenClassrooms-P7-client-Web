@@ -6,10 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 import com.peasch.webbooks.web.proxies.MicroserviceUserProxy;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -32,7 +30,6 @@ public class UserController {
     @GetMapping("/register")
     public String register (ModelMap model){
         UserBean userBean =new UserBean();
-        List<LibraryBean> libraries = mUserProxy.getLibraries();
         model.addAttribute("userBean",userBean);
        // model.addAttribute("libraries",libraries);
         return "register";
@@ -41,19 +38,19 @@ public class UserController {
     @PostMapping("/register")
     public String registered (@Valid UserBean userBean, ModelMap model){
         mUserProxy.addUser(userBean);
-        return "index";
+        return "register";
     }
     @GetMapping("/login")
     public String login (ModelMap model){
-        UserBean userBean =new UserBean();
-        model.addAttribute("userBean",userBean);
+        UserBean user =new UserBean();
+        model.addAttribute("userBean",user);
         return "login";
     }
 
     @PostMapping("/login")
-    public String LoggedIn (ModelMap model){
-        UserBean userBean =new UserBean();
-        model.addAttribute("userBean",userBean);
-        return "profile";
+    public String LoggedIn (@ModelAttribute("userBean") UserBean user){
+        String token=mUserProxy.login(user);
+        System.out.println(token);
+        return "index";
     }
 }

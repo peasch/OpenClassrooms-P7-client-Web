@@ -16,21 +16,33 @@
 <section id="skills">
     <div class="red-divider"></div>
     <div class="heading">
-        <h2>Liste intégrale des ouvrages disponibles ou non </h2>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div th:each="book: ${books}" class="col-lg-3 col-sm-6 col-xs-12">
-                <div  style="margin:10px">
-                    <a th:href="@{|/book/describe/${book.id}|}">
-                        <img th:src="@{${book.getCover()}}" alt="illustration" src=""/></a>
+        <h2><span th:text="${book.title}">user</span></h2>
+        <h3><span th:text="${book.author.getFirstName()}">user1</span> <span th:text="${book.author.getName()}"></span>
+        </h3>
+        <div class="container">
+            <div class="row">
+                <div class="red-divider"></div>
+                <div class="container skillancien" style="text-align: center">
+
+                    <div th:text="${book.summary}">user2</div>
+                    <br>
+                    <img th:src="@{${book.getCover()}}" alt="illustration" src=""/>
+                </div>
+            </div></div>
+        <div class="container" style="text-align: center">
+            <div class="row" style="text-align: center">
+                <div class="col-sm-12" style="text-align: center;margin:20px">
+                    <h6>disponibilités</h6>
+
+                    <div th:each="library: ${libraries}">
+                        <span th:text="${library.name} "></span><span>:</span>
+                        <span th:text="${bookMap.get(library.id)}"></span><span> exemplaires disponibles</span>
+                    </div>
                 </div>
             </div>
-
-        </div>
-        <div class="red-divider"></div>
-
+            <div class="red-divider"></div>
     </div>
+
 
     </div>
 </section>
