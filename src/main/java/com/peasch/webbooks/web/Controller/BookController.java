@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -24,7 +25,7 @@ public class BookController {
         Research research = new Research();
         List<AuthorBean> authors = mUserProxy.getAuthors();
         List<CategoryBean> categories = mUserProxy.getCategories();
-
+        model.addAttribute("localDate", LocalDate.now());
         model.addAttribute("authors",authors);
         model.addAttribute("categories",categories);
         model.addAttribute("research",research);
@@ -35,6 +36,7 @@ public class BookController {
     public String bookSearch(@ModelAttribute ("research") Research research, ModelMap model){
         System.out.println(research.toString());
         List<BookBean> books = mUserProxy.findBooksByAuthor(research);
+        model.addAttribute("localDate", LocalDate.now());
         model.addAttribute("books",books);
         model.addAttribute("research",research);
         return "booksByAuthor";
@@ -43,6 +45,7 @@ public class BookController {
     @GetMapping("/collection")
     public String bookCollection(ModelMap model){
         List<BookBean> books = mUserProxy.getBooks();
+        model.addAttribute("localDate", LocalDate.now());
         model.addAttribute("books",books);
         for (BookBean book:books){
             System.out.println(book.getCover());
@@ -55,9 +58,12 @@ public class BookController {
         List<LibraryBean> libraries = mUserProxy.getLibraries();
         BookBean book= mUserProxy.getBookById(id);
         Map<Integer,Integer> bookMap = mUserProxy.getCopiesofBookInLibraries(id);
+        model.addAttribute("localDate", LocalDate.now());
         model.addAttribute("book",book);
         model.addAttribute("bookMap",bookMap);
         model.addAttribute("libraries",libraries);
         return "bookDescribe";
     }
+
+
 }

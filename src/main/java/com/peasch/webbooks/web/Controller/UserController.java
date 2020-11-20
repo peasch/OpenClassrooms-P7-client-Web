@@ -2,6 +2,7 @@ package com.peasch.webbooks.web.Controller;
 
 import com.peasch.webbooks.Beans.LibraryBean;
 import com.peasch.webbooks.Beans.UserBean;
+import org.joda.time.Days;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -10,6 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import com.peasch.webbooks.web.proxies.MicroserviceUserProxy;
 
 import javax.validation.Valid;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +35,7 @@ public class UserController {
     public String register (ModelMap model){
         UserBean userBean =new UserBean();
         model.addAttribute("userBean",userBean);
-       // model.addAttribute("libraries",libraries);
+
         return "register";
     }
 
@@ -48,9 +52,19 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String LoggedIn (@ModelAttribute("userBean") UserBean user){
+    public String LoggedIn (@ModelAttribute("userBean") UserBean user, ModelMap model){
         String token=mUserProxy.login(user);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd--MM--yy");
+        UserBean  userSession = mUserProxy.getUserByUserName(user.getUserName());
         System.out.println(token);
-        return "index";
+        model.addAttribute("user",userSession);
+        model.addAttribute("borrowings",userSession.getBorrowings());
+        model.addAttribute("localDate", LocalDate.now());
+
+
+
+        return "profile";
     }
+
+
 }

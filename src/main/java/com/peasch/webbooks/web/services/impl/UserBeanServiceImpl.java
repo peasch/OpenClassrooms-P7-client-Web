@@ -12,7 +12,7 @@ public class UserBeanServiceImpl implements UserBeanService {
         userBean.setName(name);
         userBean.setFirstName(firstName);
         userBean.setEmail(email);
-        userBean.setUsername(userName);
+        userBean.setUserName(userName);
         return userBean;
     }
 }

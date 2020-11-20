@@ -11,9 +11,12 @@
 <div th:insert="fragments/fragments.html :: nav"></div>
 
 <section id="about" class="container-fluid">
-    <div class="row">
-
+    <div class="row" >
+    <div class="col-sm-12" style="text-align: center;">
+        <span>Nous sommes le : </span> <p th:text="${#temporals.format(localDate, 'dd-MM-yyyy')}"></p>
     </div>
+</div>
+
     <div class="row">
         <div class="heading">
             <h1> Bibliothèque Municipale</h1>

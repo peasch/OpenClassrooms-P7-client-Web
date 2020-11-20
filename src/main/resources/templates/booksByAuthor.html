@@ -16,12 +16,13 @@
 <section id="skills">
     <div class="red-divider"></div>
     <div class="heading">
-        <h3>Livres de l'auteur correspondant à
-            <span th:text="${research.researchAuthor} "></span>
-            <p>ou </p>
-            <span th:text="${research.researchTitle }"></span>
-            <p>ou </p>
-            <span th:text="${research.researchCategory}"></span>
+        <h3>Livres correspondant à
+            <th:block th:if="${research.researchAuthor!=''}"><span>Nom de l'auteur : </span><span th:text="${research.researchAuthor}"></span></th:block>
+            <th:block th:if="${research.researchAuthor!='' and (research.researchTitle!='' or research.researchCategory!='')}"><p>ou </p></th:block>
+            <th:block th:if="${research.researchTitle!=''}"><span>Titre du livre : </span><span th:text=" ${research.researchTitle }"></span></th:block>
+            <th:block th:if="${research.researchAuthor!='' and research.researchTitle!='' and research.researchCategory!=''}"><p>ou </p></th:block>
+            <th:block th:if="${research.researchCategory!=''}"><span>Catégorie du livre : </span><span th:text="${research.researchCategory}"></span></th:block>
+
         </h3>
     </div>
     <div class="container">

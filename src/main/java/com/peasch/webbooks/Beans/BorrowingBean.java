@@ -7,28 +7,14 @@ public class BorrowingBean {
     private String returnDate;
     private boolean extended;
     private UserBean user;
+    private CopyBean copy;
+    private Boolean returned;
+    private Integer daysToGo;
 
     public BorrowingBean() {
     }
 
-    public BorrowingBean(int id, String borrowingDate, String returnDate, boolean extended, UserBean user) {
-        this.id = id;
-        this.borrowingDate = borrowingDate;
-        this.returnDate = returnDate;
-        this.extended = extended;
-        this.user = user;
-    }
 
-    @Override
-    public String toString() {
-        return "BorrowingBean{" +
-                "id=" + id +
-                ", borrowingDate='" + borrowingDate + '\'' +
-                ", returnDate='" + returnDate + '\'' +
-                ", extended=" + extended +
-                ", user=" + user +
-                '}';
-    }
 
     public int getId() {
         return id;
@@ -68,5 +54,29 @@ public class BorrowingBean {
 
     public void setUser(UserBean user) {
         this.user = user;
+    }
+
+    public CopyBean getCopy() {
+        return copy;
+    }
+
+    public void setCopy(CopyBean copy) {
+        this.copy = copy;
+    }
+
+    public Boolean getReturned() {
+        return returned;
+    }
+
+    public void setReturned(Boolean returned) {
+        this.returned = returned;
+    }
+
+    public Integer getDaysToGo() {
+        return daysToGo;
+    }
+
+    public void setDaysToGo(Integer daysToGo) {
+        this.daysToGo = daysToGo;
     }
 }

@@ -11,6 +11,7 @@ import java.util.Map;
 @FeignClient(name="MICROSERVICE-LIBRARY-MODEL", url = "localhost:8181")
 public interface MicroserviceUserProxy {
 
+/*    --------USERS------------------*/
 
     @GetMapping(value="/users")
     List<UserBean> getUsers();
@@ -24,6 +25,11 @@ public interface MicroserviceUserProxy {
     @PostMapping("/api/auth/login")
     String login(@RequestBody UserBean user);
 
+    @GetMapping("/user/username/{userName}")
+    UserBean getUserByUserName(@PathVariable(value = "userName")String userName);
+
+    /*----------------------LIBRARY-------------------------*/
+
     @GetMapping("/libraries")
     List<LibraryBean> getLibraries();
 
@@ -33,6 +39,9 @@ public interface MicroserviceUserProxy {
 
     @PostMapping("/libraries/add")
     void addLibrary (@RequestBody LibraryBean libraryBean);
+
+
+    /*----------------------BOOKS-----------------------*/
 
     @GetMapping("/books")
     List<BookBean> getBooks();
@@ -52,6 +61,9 @@ public interface MicroserviceUserProxy {
     @GetMapping("/copies/book/{id}")
     Map<Integer,Integer> getCopiesofBookInLibraries(@PathVariable(value="id")Integer id);
 
+//---------------------BORROWINGS-----------------------------
 
+    @PostMapping("/borrowings/extend/{id}")
+    BorrowingBean extendBorrowing(@PathVariable(value="id")Integer id);
 
 }

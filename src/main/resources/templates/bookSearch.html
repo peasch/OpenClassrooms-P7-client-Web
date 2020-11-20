@@ -9,9 +9,11 @@
 <div th:insert="fragments/fragments.html :: nav"></div>
 <section id="about" class="container-fluid">
     <div class="row">
-
+        <div class="col-sm-12" style="text-align: center;">
+            <span>Nous sommes le : </span>
+            <p th:text="${#temporals.format(localDate, 'dd-MM-yyyy')}"></p>
+        </div>
     </div>
-
 </section>
 <section id="skills">
     <div class="red-divider"></div>
@@ -25,13 +27,6 @@
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="container skillancien">
-                            <label for="titleChoice">Titre:</label><br>
-                            <input type="text" name="title" th:placeholder="titre" th:field="${research.researchTitle}" id="titleChoice" size="30"
-                                   maxlength="10"/>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="container skillancien">
                             <table align="center">
                                 <label for="AuthorChoice">Auteur:</label><br>
                                 <input type="text" name="author" id="authorChoice" th:placeholder="Auteur"
@@ -39,7 +34,13 @@
                                        maxlength="10"/>
 
                             </table>
-
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="container skillancien">
+                            <label for="titleChoice">Titre:</label><br>
+                            <input type="text" name="title" th:placeholder="titre" th:field="${research.researchTitle}" id="titleChoice" size="30"
+                                   maxlength="10"/>
                         </div>
                     </div>
                     <div class="col-lg-4">

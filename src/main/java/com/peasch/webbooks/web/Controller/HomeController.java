@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.time.LocalDate;
+
 
 @Controller
 public class HomeController {
@@ -15,7 +17,7 @@ public class HomeController {
 
     @GetMapping("/home")
     public String accueil (ModelMap model ){
-
+        model.addAttribute("localDate", LocalDate.now());
         return "index";
     }
 }

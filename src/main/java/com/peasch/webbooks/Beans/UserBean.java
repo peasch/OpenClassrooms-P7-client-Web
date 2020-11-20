@@ -7,7 +7,7 @@ import java.util.Set;
 public class UserBean {
     private static final long serialVersionUID = 1L;
     private int id;
-    private String username;
+    private String userName;
     private String password;
     private String email;
     private String name;
@@ -18,26 +18,7 @@ public class UserBean {
     public UserBean() {
     }
 
-    public UserBean(int id, String userName, String password, String email, String name, String firstName, String birthDate, Set<BorrowingBean> borrowings) {
-        this.id = id;
-        this.username = userName;
-        this.password = password;
-        this.email = email;
-        this.name = name;
-        this.firstName = firstName;
-        this.birthDate = birthDate;
-        this.borrowings = borrowings;
-    }
 
-
-
-    public Set<BorrowingBean> getBorrowings() {
-        return borrowings;
-    }
-
-    public void setBorrowings(Set<BorrowingBean> borrowings) {
-        this.borrowings = borrowings;
-    }
 
     public int getId() {
         return id;
@@ -47,13 +28,15 @@ public class UserBean {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
+
+
 
     public String getPassword() {
         return password;
@@ -93,5 +76,13 @@ public class UserBean {
 
     public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public Set<BorrowingBean> getBorrowings() {
+        return borrowings;
+    }
+
+    public void setBorrowings(Set<BorrowingBean> borrowings) {
+        this.borrowings = borrowings;
     }
 }
