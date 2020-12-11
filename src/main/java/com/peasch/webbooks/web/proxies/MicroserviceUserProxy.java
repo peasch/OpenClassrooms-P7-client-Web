@@ -1,8 +1,8 @@
 package com.peasch.webbooks.web.proxies;
 
 import com.peasch.webbooks.Beans.*;
+
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,7 +14,7 @@ public interface MicroserviceUserProxy {
 /*    --------USERS------------------*/
 
     @GetMapping(value="/users")
-    List<UserBean> getUsers();
+    List<UserBean> getUsers(@RequestHeader(name = "Authorization") String token);
 
     @GetMapping(value="/user/{id}")
     UserBean getUserById(@PathVariable(value = "id") Integer id);
@@ -26,44 +26,40 @@ public interface MicroserviceUserProxy {
     String login(@RequestBody UserBean user);
 
     @GetMapping("/user/username/{userName}")
-    UserBean getUserByUserName(@PathVariable(value = "userName")String userName);
+    UserBean getUserByUserName(@PathVariable(value = "userName")String userName,@RequestHeader(name = "Authorization") String token);
 
     /*----------------------LIBRARY-------------------------*/
 
     @GetMapping("/libraries")
-    List<LibraryBean> getLibraries();
+    List<LibraryBean> getLibraries(@RequestHeader(name = "Authorization") String token);
 
     @GetMapping("/libraries/{id}")
-    LibraryBean getLibraryById(@PathVariable(value = "id")Integer id);
-
-
-    @PostMapping("/libraries/add")
-    void addLibrary (@RequestBody LibraryBean libraryBean);
+    LibraryBean getLibraryById(@PathVariable(value = "id")Integer id,@RequestHeader(name = "Authorization") String token);
 
 
     /*----------------------BOOKS-----------------------*/
 
     @GetMapping("/books")
-    List<BookBean> getBooks();
+    List<BookBean> getBooks(@RequestHeader(name = "Authorization") String token);
 
     @GetMapping("/authors")
-    List<AuthorBean> getAuthors();
+    List<AuthorBean> getAuthors(@RequestHeader(name = "Authorization") String token);
 
     @GetMapping("/categories")
-    List<CategoryBean> getCategories();
+    List<CategoryBean> getCategories(@RequestHeader(name = "Authorization") String token);
 
     @PostMapping("/books/search")
-    List<BookBean> findBooksByAuthor(@RequestBody Research research);
+    List<BookBean> findBooksByAuthor(@RequestBody Research research,@RequestHeader(name = "Authorization") String token);
 
     @GetMapping("/books/{id}")
-    BookBean getBookById(@PathVariable(value = "id")Integer id);
+    BookBean getBookById(@PathVariable(value = "id")Integer id,@RequestHeader(name = "Authorization") String token);
 
     @GetMapping("/copies/book/{id}")
-    Map<Integer,Integer> getCopiesofBookInLibraries(@PathVariable(value="id")Integer id);
+    Map<Integer,Integer> getCopiesofBookInLibraries(@PathVariable(value="id")Integer id,@RequestHeader(name = "Authorization") String token);
 
 //---------------------BORROWINGS-----------------------------
 
     @PostMapping("/borrowings/extend/{id}")
-    BorrowingBean extendBorrowing(@PathVariable(value="id")Integer id);
+    BorrowingBean extendBorrowing(@PathVariable(value="id")Integer id,@RequestHeader(name = "Authorization") String token);
 
 }

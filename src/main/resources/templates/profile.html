@@ -59,8 +59,10 @@
                                     <span th:text="${borrowing.getCopy().getBook().getAuthor().getName()}">user2</span>
                                 </div>
                                 <div>
+                                    <a th:href="@{|/book/describe/${borrowing.getCopy().getBook().getId()}|}">
+
                                     <img th:src="@{${borrowing.getCopy().getBook().getCover()}}" alt="illustration"
-                                         src=""/>
+                                         src=""/></a>
                                 </div>
                                 <div th:switch="${borrowing.extended}">
                                     <div th:case="false">

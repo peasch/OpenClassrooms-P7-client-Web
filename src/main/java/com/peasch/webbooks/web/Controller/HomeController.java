@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 
 
@@ -16,7 +17,7 @@ public class HomeController {
     MicroserviceUserProxy mUserProxy;
 
     @GetMapping("/home")
-    public String accueil (ModelMap model ){
+    public String accueil (ModelMap model, HttpSession session){
         model.addAttribute("localDate", LocalDate.now());
         return "index";
     }
